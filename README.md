@@ -1,5 +1,5 @@
 
-# MixBCT: Towards Self-Adapting Backward-Compatible Training
+# SA-BCT: Towards Self-Adapting Backward-Compatible Training
  Workflow            |  Performance(Open-Class scenario)
 :-------------------------:|:-------------------------:
 ![1695723602526](https://github.com/yuleung/MixBCT/assets/25082336/d5c080fa-d877-46bb-8d99-5d0df91125e8) |  ![1695724153729](https://github.com/yuleung/MixBCT/assets/25082336/5303ee41-543b-4cb4-ae66-80c83b7e20f0)
@@ -40,7 +40,7 @@ The download link of the datasets can be find in [https://github.com/deepinsight
 ## Code Structure
 
 * The main-dir(./) is used for train the Old model
-* ./BCT_methods/  --- The methods which summarized MixBCT, UniBCT, NCCL, BCT, AdvBCT and L2. 
+* ./BCT_methods/  --- The methods which summarized SA-BCT, UniBCT, NCCL, BCT, AdvBCT and L2. 
 * ./tools/        --- dataset split code, some preprocessing operations code and IJB-C evaluation code
 
 This code based on the project [insightface](https://github.com/deepinsight/insightface), We maintain separate directories for each method to enhance clarity and facilitate reproducibility.
@@ -70,7 +70,7 @@ python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1  --master_port=
 ```
 python tools/denoising/get_feature.py configs/f128_r18_softmax_class30.py --SD f128_r18_softmax_class70
 ```
-### Step-2   ----（preprocessing operations）used in MixBCT
+### Step-2   ----（preprocessing operations）used in SA-BCT
 **Get the old denoised feature of the dataset consist of 'class70' images(based on ①).** 
 ```
 python tools/denoising/denoise_credible.py --T 0.9 --SD f128_r18_softmax_class70
@@ -82,10 +82,10 @@ python tools/get_feature/get_avg_feature.py  --SD f128_r18_softmax_class70
 ```
 
 ### Step-3  
-**Train the new model by MixBCT**
+**Train the new model by SA-BCT**
 ```
-cd BCT_Methods/MixBCT/
-python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1  --master_port=22222 train.py configs/OPclass_ms1mv3_r18_to_r50_MixBCT_softmax_to_arc_f128.py
+cd BCT_Methods/SA-BCT/
+python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1  --master_port=22222 train.py configs/OPclass_ms1mv3_r18_to_r50_SA-BCT_softmax_to_arc_f128.py
 ```
 **Or train the new model by NCCL**
 ```
