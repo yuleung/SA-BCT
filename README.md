@@ -1,5 +1,5 @@
 
-# SA-BCT: Towards Self-Adapting Backward-Compatible Training
+# SA-BCT: Self-Adapting Backward-Compatible Training
  Workflow            |  Performance(Open-Class scenario)
 :-------------------------:|:-------------------------:
 ![1695723602526](https://github.com/yuleung/MixBCT/assets/25082336/d5c080fa-d877-46bb-8d99-5d0df91125e8) |  ![1695724153729](https://github.com/yuleung/MixBCT/assets/25082336/5303ee41-543b-4cb4-ae66-80c83b7e20f0)
@@ -17,7 +17,7 @@
 
 
 
-Implementation of **[MixBCT: Towards Self-Adapting Backward-Compatible Training(Ours)](https://arxiv.org/abs/2308.06948)** , **L2** and other SOTA methods: [UniBCT](https://arxiv.org/abs/2203.01583), [NCCL](https://ojs.aaai.org/index.php/AAAI/article/view/20175), [BCT](http://openaccess.thecvf.com/content_CVPR_2020/html/Shen_Towards_Backward-Compatible_Representation_Learning_CVPR_2020_paper.html), [AdvBCT](https://openaccess.thecvf.com/content/CVPR2023/html/Pan_Boundary-Aware_Backward-Compatible_Representation_via_Adversarial_Learning_in_Image_Retrieval_CVPR_2023_paper.html)
+Implementation of **[SA-BCT: Self-Adapting Backward-Compatible Training(Ours)](https://arxiv.org/abs/2308.06948)** , **L2** and other SOTA methods: [UniBCT](https://arxiv.org/abs/2203.01583), [NCCL](https://ojs.aaai.org/index.php/AAAI/article/view/20175), [BCT](http://openaccess.thecvf.com/content_CVPR_2020/html/Shen_Towards_Backward-Compatible_Representation_Learning_CVPR_2020_paper.html), [AdvBCT](https://openaccess.thecvf.com/content/CVPR2023/html/Pan_Boundary-Aware_Backward-Compatible_Representation_via_Adversarial_Learning_in_Image_Retrieval_CVPR_2023_paper.html)
 
 **L2:**     Conduct simple L2 constraint between old features and new features
 
@@ -65,7 +65,7 @@ python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1  --master_port=
 ```
 python -m torch.distributed.launch --nproc_per_node=8 --nnodes=1  --master_port=22222 train_old_softmax.py configs/f128_r18_softmax_class30.py
 ```
-### Step-2 ①   ----（preprocessing operations）used in MixBCT、NCCL、AdvBCT
+### Step-2 ①   ----（preprocessing operations）used in SA-BCT、NCCL、AdvBCT
 **Get the old features of the dataset consist of 'class70'(the sub-dataset containing 70 percent of the classes) images.**  
 ```
 python tools/denoising/get_feature.py configs/f128_r18_softmax_class30.py --SD f128_r18_softmax_class70
